@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IAPIResponseModel, IPropertyType } from '../model/master';
+import { IAPIResponseModel, IPropertyType, Site } from '../model/master';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 
@@ -26,5 +26,42 @@ export class MasterService {
 
   deletePropertyById(id:number):Observable<IAPIResponseModel>{
    return this.http.delete<IAPIResponseModel>(environment.API_URL + "DeletePropertyTypeById?id=" +id)
+  }
+
+  saveSite(obj: Site):Observable<IAPIResponseModel> { 
+    return this.http.post<IAPIResponseModel>(environment.API_URL + 'AddSites',obj)
+  }
+ 
+  getAllSites():Observable<IAPIResponseModel> {
+    return this.http.get<IAPIResponseModel>(environment.API_URL + 'GetAllSites')
+  }
+   
+  updateSites(obj: Site):Observable<IAPIResponseModel> { 
+    return this.http.put<IAPIResponseModel>(environment.API_URL + 'UpdateSites',obj)
+  }
+  
+  deleteSitesTypeById(id: number):Observable<IAPIResponseModel> {
+    return this.http.delete<IAPIResponseModel>(environment.API_URL + 'DeleteSitesById?id='+id)
+  }
+
+  saveProperty(obj: Site):Observable<IAPIResponseModel> { 
+    return this.http.post<IAPIResponseModel>(environment.API_URL + 'AddPropertyMasters',obj)
+  } 
+
+  getAllPropertyMasters():Observable<IAPIResponseModel> {
+    return this.http.get<IAPIResponseModel>(environment.API_URL + 'GetAllPropertyMasters')
+  }
+ 
+  getAllPropertyBySiteId(siteid: number):Observable<IAPIResponseModel> {
+    return this.http.get<IAPIResponseModel>(environment.API_URL + 'GetAllPropertyBySiteId?siteid='+siteid)
+  }
+ 
+  onSaveBooking(obj: Site):Observable<IAPIResponseModel> { 
+    return this.http.post<IAPIResponseModel>(environment.API_URL + 'AddPropertyBooking',obj)
+  } 
+
+
+  getAllPropertyBookingBySiteId(siteid: number):Observable<IAPIResponseModel> {
+    return this.http.get<IAPIResponseModel>(environment.API_URL + 'GetAllPropertyBookingBySiteId?siteid='+siteid)
   }
 }
