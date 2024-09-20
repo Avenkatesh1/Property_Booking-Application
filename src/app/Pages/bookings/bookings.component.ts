@@ -48,4 +48,7 @@ export class BookingsComponent {
       model.style.display = 'none';
     }
   }
+  onPropertiesSave(){
+    
+  }
 }

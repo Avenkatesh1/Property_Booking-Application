@@ -8,21 +8,21 @@
         <select name="" id="siteDropDown" class="form-select" [(ngModel)]="siteId" (change)="getProperties($event)">
             <option value="" disabled selected>Select a Sites</option>
             @for (item of sites$ |async; track $index) {
-               <option [value]="item.siteId">{{item.siteTitle}}</option>
+            <option [value]="item.siteId">{{item.siteTitle}}</option>
             }
         </select>
     </div>
 
     <div class="row">
         @for (item of propertiesList; track $index) {
-            <div class="col-md-3">
-                <div class="property-box available">
-                    <h5>{{item.propertyNo}}</h5>
-                    <p>{{item.totalArea}}Sqf {{item.facing}}-Facing</p>
-                    <p>Rate: {{item.rate}}/-Sqf</p>
-                    <button class="btn btn-success" (click)="openModal(item)">Book</button>
-                </div>
+        <div class="col-md-3">
+            <div class="property-box available">
+                <h5>{{item.propertyNo}}</h5>
+                <p>{{item.totalArea}}Sqf {{item.facing}}-Facing</p>
+                <p>Rate: {{item.rate}}/-Sqf</p>
+                <button class="btn btn-success" (click)="openModal(item)">Book</button>
             </div>
+        </div>
         }
         <!-- <div class="col-md-3">
             <div class="property-box available">
@@ -52,31 +52,64 @@
 </div>
 <div class="modal" id="modalPapup">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content"> 
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
-          <button type="button" class="btn-close" (click)="closeModal()" data-bs-dismiss="modal"></button>
-        </div> 
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-12">
-              <div class="card mb-4"> 
-                <div class="card-header">
-                  <h5>Property Details</h5>
-                </div>
-                <div class="card-body">
-                </div>
-              </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="btn-close" (click)="closeModal()" data-bs-dismiss="modal"></button>
             </div>
-          </div>
-            
-        
-            <!-- Property Details List Table -->
-           
-        </div> 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger"  (click)="closeModal()" data-bs-dismiss="modal">Close</button>
-        </div> 
-      </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="mobil" class="form-label">Mobile</label>
+                                <input type="number" class="form-control" id="mobile" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="adders" class="form-label">Adders</label>
+                                <input type="text" class="form-control" id="adders" required>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label for="bookingDate" class="form-label">Booking Date</label>
+                                <input type="datetime-local" class="form-control" id="bookingDate">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="bookingRate" class="form-label">Booking Rate</label>
+                                <input type="number" class="form-control" placeholder="Enter Your Booking Rate" id="bookinRate">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="total" class="form-label">Total Amount</label>
+                                <input type="number" class="form-control" placeholder="Enter Your Total Amount" id="total">
+                            </div>
+                        </div>
+                           <button class="btn btn-primary mt-4" (click)="onPropertiesSave()">Save</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closeModal()"
+                    data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
