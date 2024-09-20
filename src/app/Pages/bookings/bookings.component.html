@@ -58,48 +58,48 @@
                 <button type="button" class="btn-close" (click)="closeModal()" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form [formGroup]="bookingForm">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" required>
+                                <input type="text" formControlName="name" class="form-control"  id="name" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="mobil" class="form-label">Mobile</label>
-                                <input type="number" class="form-control" id="mobile" required>
+                                <input type="number" formControlName="mobile" class="form-control"  id="mobile" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" formControlName="emailid" class="form-control"  id="email" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="adders" class="form-label">Adders</label>
-                                <input type="text" class="form-control" id="adders" required>
+                                <input type="text" formControlName="address" class="form-control"  id="adders" required>
                             </div>
                         </div>
                         <div class="col-8">
                             <div class="form-group">
                                 <label for="bookingDate" class="form-label">Booking Date</label>
-                                <input type="datetime-local" class="form-control" id="bookingDate">
+                                <input type="datetime-local" formControlName="bookingDate" class="form-control"  id="bookingDate">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="bookingRate" class="form-label">Booking Rate</label>
-                                <input type="number" class="form-control" placeholder="Enter Your Booking Rate" id="bookinRate">
+                                <input type="number" formControlName="bookingRate" class="form-control"  placeholder="Enter Your Booking Rate" id="bookinRate">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="total" class="form-label">Total Amount</label>
-                                <input type="number" class="form-control" placeholder="Enter Your Total Amount" id="total">
+                              <input type="number" formControlName="totalAmount" class="form-control" placeholder="Enter Your Total Amount" id="total">
                             </div>
                         </div>
                            <button class="btn btn-primary mt-4" (click)="onPropertiesSave()">Save</button>
