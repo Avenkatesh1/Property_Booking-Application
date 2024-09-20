@@ -35,14 +35,14 @@ export class BookingsComponent {
   }
 
   openModal(data:IProperty)  {
-    const model = document.getElementById('model');
+    const model = document.getElementById('modalPapup');
 
     if (model) {
       model.style.display = 'block';
     }
   }
   closeModal() {
-    const model = document.getElementById('model');
+    const model = document.getElementById('modalPapup');
 
     if (model) {
       model.style.display = 'none';
