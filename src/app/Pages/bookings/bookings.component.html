@@ -1,1 +1,82 @@
-<h1 class="text-center bg-info py-2 text-white">Booking_List</h1>
+<h1 class="text-center bg-info py-1 sticky-top text-white">Booking_List</h1>
+
+<div class="container mt-2">
+    <h2 class="text-center mb-4">Site Properties Management</h2>
+
+    <div class="mb-4">
+        <label for="siteDropDown" class="form-label">Select Site</label>
+        <select name="" id="siteDropDown" class="form-select" [(ngModel)]="siteId" (change)="getProperties($event)">
+            <option value="" disabled selected>Select a Sites</option>
+            @for (item of sites$ |async; track $index) {
+               <option [value]="item.siteId">{{item.siteTitle}}</option>
+            }
+        </select>
+    </div>
+
+    <div class="row">
+        @for (item of propertiesList; track $index) {
+            <div class="col-md-3">
+                <div class="property-box available">
+                    <h5>{{item.propertyNo}}</h5>
+                    <p>{{item.totalArea}}Sqf {{item.facing}}-Facing</p>
+                    <p>Rate: {{item.rate}}/-Sqf</p>
+                    <button class="btn btn-success" (click)="openModal(item)">Book</button>
+                </div>
+            </div>
+        }
+        <!-- <div class="col-md-3">
+            <div class="property-box available">
+                <h5>Flot 1</h5>
+                <p>1500Sqf E-Facing</p>
+                <p>Rate: 5000/-Sqf</p>
+                <button class="btn btn-success">Book</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="property-box sold">
+                <h5>Flot 1</h5>
+                <p>1500Sqf E-Facing</p>
+                <p>Rate: 5000/-Sqf</p>
+                <button class="btn btn-danger">Book</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="property-box available">
+                <h5>Flot 1</h5>
+                <p>1500Sqf E-Facing</p>
+                <p>Rate: 5000/-Sqf</p>
+                <button class="btn btn-success">Book</button>
+            </div>
+        </div> -->
+    </div>
+</div>
+<div class="modal" id="modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content"> 
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="btn-close" (click)="closeModal()" data-bs-dismiss="modal"></button>
+        </div> 
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="card mb-4"> 
+                <div class="card-header">
+                  <h5>Property Details</h5>
+                </div>
+                <div class="card-body">
+                </div>
+              </div>
+            </div>
+          </div>
+            
+        
+            <!-- Property Details List Table -->
+           
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger"  (click)="closeModal()" data-bs-dismiss="modal">Close</button>
+        </div> 
+      </div>
+    </div>
+  </div>
