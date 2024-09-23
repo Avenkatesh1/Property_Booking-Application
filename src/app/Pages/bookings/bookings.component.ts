@@ -79,7 +79,7 @@ export class BookingsComponent {
       this.initializeBookingForm();
       this.closeModal();
      }else{
-      alert(res.messege)
+      alert(res.messege);
      }
    })
 }
