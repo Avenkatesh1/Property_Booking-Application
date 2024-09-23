@@ -23,31 +23,30 @@ export class BookingsComponent {
   bookingForm: FormGroup = new FormGroup({});
 
   constructor() {
-    this.initializeBookinForm();
+    this.initializeBookingForm();
     this.sites$ = this.masterS.getAllSites().pipe(
       map((res: IAPIResponseModel) => {
         return res.data;
       })
     );
   }
-
-  initializeBookinForm(){
+  initializeBookingForm() {
     this.bookingForm = new FormGroup({
-       bookingId: new FormControl(0),
-       propertyId: new FormControl(this.currentPropertyId),
-       bookingRate: new FormControl(''),
-       totalAmount: new FormControl(''),
-       custId: new FormControl(0),
-       bookingDate: new FormControl(''),
-       name: new FormControl(''),
-       mobile: new FormControl(''),
-       emailid: new FormControl(''),
-       address: new FormControl(''),
-    }) 
+      bookingId: new FormControl(0),
+      propertyId: new FormControl(this.currentPropertyId),
+      bookingRate: new FormControl(0),
+      totalAmount: new FormControl(''),
+      custId: new FormControl(0),
+      bookindDate: new FormControl(new Date()), 
+      name: new FormControl(''),
+      mobile: new FormControl(''),
+      emailid: new FormControl(''),
+      address: new FormControl(''),
+    });
   }
 
   getProperties(event: Event) {
-    this.getBookingBySiteId()
+    this.getBookingBySiteId();
     this.masterS.getAllPropertyBySiteId(this.siteId).subscribe((res: IAPIResponseModel) => {
         this.propertiesList = res.data;
       });
@@ -60,7 +59,7 @@ export class BookingsComponent {
 
   openModal(data:IProperty)  {
     this.currentPropertyId = data.propertyId;
-    this.initializeBookinForm()
+    this.initializeBookingForm()
     const model = document.getElementById('modalPapup');
     if (model) {
       model.style.display = 'block';
@@ -73,13 +72,15 @@ export class BookingsComponent {
     }
   }
   onPropertiesSave(){
-    this.masterS.onSaveBooking(this.bookingForm.value).subscribe((res: IAPIResponseModel)=>{
-      if(res.result) {
-        alert("Record's Saved Successfully");
-        this.getBookingBySiteId();
-      } else {
-        alert(res.messege)
-      }
-    })
-  }
+   this.masterS.onSaveBooking(this.bookingForm.value).subscribe((res:IAPIResponseModel)=>{
+     if(res.result){
+      alert("Records Saved Successfully");
+      this.getBookingBySiteId();
+      this.initializeBookingForm();
+      this.closeModal();
+     }else{
+      alert(res.messege)
+     }
+   })
+}
 }
