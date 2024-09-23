@@ -36,13 +36,13 @@ export class SiteComponent {
     this.getGridDatab()
   }
 
-  initializeForm() {
+  initializeForm(item?: IProperty) {
     this.propertyForm =  new FormGroup({ 
-        propertyId:new FormControl(0),
-        propertyNo:new FormControl(''),
-        facing:new FormControl(''),
-        totalArea:new FormControl(''),
-        rate:new FormControl(''),
+        propertyId:new FormControl<number>(item? item.propertyId: 0),
+        propertyNo:new FormControl<number>(item? item.propertyNo: 0),
+        facing:new FormControl<string>(item? item.facing: ''),
+        totalArea:new FormControl<string>(item? item.totalArea: ''),
+        rate:new FormControl<number>(item? item.rate: 0),
         siteId:new FormControl(this.currentSiteId)
     })
   }
@@ -129,5 +129,37 @@ export class SiteComponent {
       })
     }
   
+  }
+  onEditProperty(item: IProperty) {
+    this.initializeForm(item)
+ }
+
+
+  onUpdateProperty(){
+    this.masterSrv.updatePropertyMasters(this.propertyForm.value).subscribe((res: IAPIResponseModel)=>{
+      if(res.result) {
+        alert("Record's Updated Successfully");
+        this.getProperties(); 
+        this.initializeForm();
+        // this.closeModal();
+      } else {
+        alert(res.messege)
+      }
+    })
+  }
+
+  onPropertiesDelete(id:number){
+    const isDelete = confirm("Are you sure You Want to Delete");
+    if(isDelete){
+      this.masterSrv.deletePropertyMasterById(id).subscribe((res:IAPIResponseModel)=>{
+        if(res.result){
+          alert("Record Deleted Successfully");
+          this.getProperties();
+          this.initializeForm()
+        }else{
+          alert(res.messege)
+        }
+      })
+    }
   }
 }

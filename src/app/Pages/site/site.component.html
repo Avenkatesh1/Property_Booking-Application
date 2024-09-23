@@ -160,13 +160,14 @@
                      <!-- Sample Property -->
                       @for (item of propertyList; track $index) {
                        <tr> 
+                         <td>{{$index+1}}</td>
                          <td>{{item.propertyNo}}</td>
                          <td>{{item.facing}}</td>
                          <td>{{item.totalArea}}</td>
                          <td>{{item.rate}}</td> 
                          <td>
-                           <button class="btn btn-warning btn-sm">Edit</button>
-                           <button class="btn btn-danger btn-sm">Delete</button>
+                           <button class="btn btn-warning btn-sm" (click)="onEditProperty(item)"><i class="fa-solid fa-pen-to-square"></i></button>
+                           <button class="btn btn-danger btn-sm"(click)="onPropertiesDelete(item.propertyId)"><i class="fa-solid fa-trash"></i></button>
                          </td>
                        </tr>
                       }
@@ -204,7 +205,11 @@
                        <input type="number" formControlName="rate" class="form-control" id="rate" placeholder="Enter Rate (e.g., 5000 per sqft)">
                      </div> 
                    </div> 
-                   <button type="button" (click)="onSaveProperty()" class="btn btn-primary">Save</button>
+                   @if(propertyForm.controls["propertyId"].value == 0){
+                      <button type="button" (click)="onSaveProperty()" class="btn btn-primary">Save</button>                    
+                   }@else {
+                      <button type="button" (click)="onUpdateProperty()" class="btn btn-warning">Update</button>
+                   }
                  </form>
                </div>
              </div>
