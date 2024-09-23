@@ -51,6 +51,14 @@ export class MasterService {
   getAllPropertyMasters():Observable<IAPIResponseModel> {
     return this.http.get<IAPIResponseModel>(environment.API_URL + 'GetAllPropertyMasters')
   }
+  
+  updatePropertyMasters(obj: Site):Observable<IAPIResponseModel> { 
+    return this.http.put<IAPIResponseModel>(environment.API_URL + 'UpdatePropertyMasters',obj)
+  }
+
+  deletePropertyMasterById(id: number):Observable<IAPIResponseModel> {
+    return this.http.delete<IAPIResponseModel>(environment.API_URL + 'DeletePropertyMasterById?propertyId='+id)
+  }
  
   getAllPropertyBySiteId(siteid: number):Observable<IAPIResponseModel> {
     return this.http.get<IAPIResponseModel>(environment.API_URL + 'GetAllPropertyBySiteId?siteid='+siteid)
