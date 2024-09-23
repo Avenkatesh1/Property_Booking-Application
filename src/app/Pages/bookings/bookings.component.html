@@ -16,11 +16,16 @@
     <div class="row">
         @for (item of propertiesList; track $index) {
         <div class="col-md-3">
-            <div class="property-box available">
+            <div class="property-box available"[className]="checkIfPropertyIsAvailable(item.propertyId) != null ? 'property-box sold':'property-box available'">
                 <h5>{{item.propertyNo}}</h5>
                 <p>{{item.totalArea}}Sqf {{item.facing}}-Facing</p>
                 <p>Rate: {{item.rate}}/-Sqf</p>
-                <button class="btn btn-success" (click)="openModal(item)">Book</button>
+                @if(checkIfPropertyIsAvailable(item.propertyId) != null){
+                    <p>{{checkIfPropertyIsAvailable(item.propertyId).customerName}}</p>
+                    <button class="btn btn-danger">Sold</button>
+                }@else {
+                    <button class="btn btn-success" (click)="openModal(item)">Book</button>
+                }
             </div>
         </div>
         }

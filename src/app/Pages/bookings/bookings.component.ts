@@ -83,4 +83,13 @@ export class BookingsComponent {
      }
    })
 }
+
+checkIfPropertyIsAvailable(propertyId:number){
+  const Record = this.bookingList.find(m => m.propertyId == propertyId);
+  if(Record != undefined){
+     return Record
+  }else{
+    return null
+  }
+}
 }
