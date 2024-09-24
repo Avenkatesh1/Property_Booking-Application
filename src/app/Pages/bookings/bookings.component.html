@@ -21,7 +21,7 @@
                 <p>{{item.totalArea}}Sqf {{item.facing}}-Facing</p>
                 <p>Rate: {{item.rate}}/-Sqf</p>
                 @if(checkIfPropertyIsAvailable(item.propertyId) != null){
-                    <p>{{checkIfPropertyIsAvailable(item.propertyId).customerName}}</p>
+                    <p class="text-bg-info text-white p-1">CustomerName:{{checkIfPropertyIsAvailable(item.propertyId).customerName}}</p>
                     <button class="btn btn-danger">Sold</button>
                 }@else {
                     <button class="btn btn-success" (click)="openModal(item)">Book</button>
